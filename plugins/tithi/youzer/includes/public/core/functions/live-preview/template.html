@@ -1,0 +1,102 @@
+<div class="lp-prepost" ng-class="{'lg-display-hide': hidePreview == true}">
+
+    <button class="pull-right btn btn-danger lp-button-cancel btn-{{cancelButtonClass}}"
+            ng-class="{'lg-display-hide': allowPosting == false}"
+            ng-click="resetPreview()"
+            type="button">
+            <i class="fas fa-times"></i>
+    </button>
+
+    <div class="lp-preview-image" ng-class="{'lg-display-hide': noThumbnail == true}" style="background-image:url({{preview.image}});">
+        <input type="hidden" name="url_preview_img" value="{{preview.image}}">
+        <input type="hidden" name="url_preview_link" value="{{preview.url}}">
+        <input type="hidden" name="url_preview_site" value="{{preview.canonicalUrl}}">
+        <span><i class="fas fa-play lp-play" ng-class="{'lg-display-hide': preview.video == false}"></i></span>
+
+    </div>
+
+    <div class="lp-prepost-wrap" ng-class="{'col-sm-12': noThumbnail == true, 'col-sm-9': noThumbnail == false}">
+
+        <div class="lp-preview-title-wrap"
+             ng-class="{'lg-display-hide': previewTitleEditing == true}">
+
+            <span class="lp-preview-title" ng-click="editPreviewTitle()">{{preview.title}}</span>
+
+        </div>
+
+        <div class="lp-preview-replace-title-wrap"
+             ng-class="{'lg-display-hide': previewTitleEditing == false}">
+            <input name="url_preview_title" class="form-control lp-preview-replace-title"
+                   id="editPreviewTitle"
+                   ng-model="preview.title" type="text"
+                   placeholder="{{preview.title}}">
+        </div>
+
+        <div class="lp-preview-canonical-url">{{preview.canonicalUrl}}</div>
+
+        <div class="lp-preview-description-wrap">
+            <div class="lp-preview-description"
+                 ng-click="editPreviewDescription()"
+                 ng-class="{'lg-display-hide': previewDescriptionEditing == true}">
+                {{preview.description}}
+            </div>
+        </div>
+
+        <div class="lp-preview-replace-description-wrap"
+             ng-class="{'lg-display-hide': previewDescriptionEditing == false}">
+            <textarea name="url_preview_desc"
+                    class="form-control lp-no-resize lp-preview-replace-description"
+                    ng-model="preview.description">
+            </textarea>
+        </div>
+
+        <div class="clearfix lp-preview-thubmnail" ng-class="{'lg-display-hide': noThumbnail == true}">
+
+            <span class="lp-preview-thubmnail-buttons">
+
+                <button class="btn btn-sm"
+                        ng-click="previousImage()"
+                        ng-class="{'btn-disabled': leftArrowDisabled == true, 'btn-default': leftArrowDisabled == false}"
+                        type="button">
+
+                    <i class="fas fa-caret-left"></i>
+
+                </button>
+
+                <button class="btn btn-sm"
+                        ng-click="nextImage()"
+                        ng-class="{'btn-disabled': rightArrowDisabled == true, 'btn-default': rightArrowDisabled == false}"
+                        type="button">
+
+                    <i class="fas fa-caret-right"></i>
+
+                </button>
+
+            </span>
+
+            <span class="lp-preview-thubmnail-pagination">{{thumbnailPaginationText}}</span>
+
+            <span class="lp-preview-thubmnail-text">{{thubmnailText}}</span>
+
+        </div>
+
+        <div class="lp-preview-no-thubmnail" ng-class="{'lg-display-hide': noImage == true}">
+
+            <label class="checkbox-inline lp-preview-no-thubmnail-text">
+
+                <input name="url_preview_use_thumbnail" type="checkbox" ng-model="noThumbnail">
+
+                <span>{{noThubmnailText}}</span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="clearfix lp-button lp-loading-text" ng-class="{'lg-display-hide': hideLoading == true}">
+    <i class="fas fa-spinner fa-spin"></i>
+</div>
